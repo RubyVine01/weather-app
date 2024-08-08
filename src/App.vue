@@ -1,17 +1,47 @@
-<script setup>
+<script>
+export default {
+  data() {
+    return {
+      city: '',
+      error: '',
+    }
+  },
+  computed: {
+    cityName() {
+      return "«" + this.city + "»"
+    }
+  },
+  methods: {
+    getWeather() {
+      if (this.city.trim().length < 2) {
+        this.error = "Название должно быть больше одного символов"
+        return false
+      }
+      this.error = ""
+    }
+  }
+
+}
+
 
 </script>
 
 <template>
   <div class="wrapper">
-    <h1>Приложение погоды</h1>
-    <p>Узнать погоду в вашем городе</p>
-    <input type="text" placeholder="Введите город">
-    <button>Узнать погоду</button>
+    <h1>Приложение погоды </h1>
+    <p>Узнать погоду в {{ city == "" ? "вашем городе" : cityName }}</p>
+    <input type="text" v-model="city" placeholder="Введите город">
+    <button v-if="city != ''" @click="getWeather()">Узнать погоду</button>
+    <button disabled v-else>Введите название города</button>
+    <p class="error">{{ error }}</p>
   </div>
 </template>
 
 <style scoped>
+.error {
+  color: #d03939;
+}
+
 .wrapper {
   width: 900px;
   height: 500px;
@@ -44,6 +74,11 @@
 
 .wrapper input:focus {
   border-bottom-color: #6e2d7d;
+}
+
+.wrapper button:disabled {
+  background: #746027;
+  cursor: not-allowed;
 }
 
 .wrapper button {
