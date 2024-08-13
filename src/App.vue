@@ -34,7 +34,9 @@ export default {
       }
       this.error = ""
 
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=4a8d4796c8d43dc879cd6d8b8b323369`)
+      const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=${apiKey}`)
         .then(
           res => (this.info = res.data)
         )
