@@ -1,15 +1,30 @@
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       city: '',
       error: '',
+      info: null,
     }
   },
   computed: {
     cityName() {
       return "«" + this.city + "»"
-    }
+    },
+    showTemp() {
+      return "Температура: " + this.info.main.temp
+    },
+    showFeelsLike() {
+      return "Ощущается как: " + this.info.main.feels_like
+    },
+    showMinTemp() {
+      return "Минимальная температура: " + this.info.main.temp_min
+    },
+    showMaxTemp() {
+      return "Максимальная температура: " + this.info.main.temp_max
+    },
+
   },
   methods: {
     getWeather() {
@@ -18,6 +33,14 @@ export default {
         return false
       }
       this.error = ""
+
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=4a8d4796c8d43dc879cd6d8b8b323369`)
+        .then(
+          res => (this.info = res.data)
+        )
+        .catch(
+          error => (this.error = "Такой город не найден")
+        )
     }
   }
 
@@ -34,6 +57,13 @@ export default {
     <button v-if="city != ''" @click="getWeather()">Узнать погоду</button>
     <button disabled v-else>Введите название города</button>
     <p class="error">{{ error }}</p>
+    <div v-if="info != null">
+      <p>{{ showTemp }}</p>
+      <p>{{ showFeelsLike }}</p>
+      <p>{{ showMinTemp }}</p>
+      <p>{{ showMaxTemp }}</p> 
+
+    </div>
   </div>
 </template>
 
