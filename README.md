@@ -1,29 +1,54 @@
-# weather-app
+# Weather App
 
-This template should help get you started developing with Vue 3 in Vite.
+[Weather App](https://rubyvine01.github.io/weather-app/) — это простое приложение для получения информации о текущей погоде в выбранном городе.
 
-## Recommended IDE Setup
+## Функциональность
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Поиск погоды по названию города.
+- Отображение температуры.
+- Валидация ввода: название города должно быть больше одного символа.
+- Уведомление об ошибках, если город не найден.
 
-## Customize configuration
+## Используемые технологии
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- **Vue.js** — прогрессивный JavaScript-фреймворк для создания пользовательских интерфейсов.
+- **Vite** — инструмент для быстрой сборки и разработки современных веб-приложений.
+- **Axios** — HTTP клиент для выполнения запросов к API.
+- **OpenWeatherMap API** — внешний API для получения данных о погоде.
 
-## Project Setup
+## Установка
 
-```sh
-npm install
+1. Клонируйте репозиторий:
+
+```bash
+git clone  https://github.com/RubyVine01/weather-app.git
+
+cd weather-app
 ```
 
-### Compile and Hot-Reload for Development
+2. Установите зависимости:
 
-```sh
+Убедитесь, что у вас установлены Node.js и npm.
+
+```bash
+npm install
+```
+   
+3. Создайте файл .env и добавьте ваш API ключ:
+
+В корне проекта создайте файл .env и добавьте в него ваш API ключ OpenWeatherMap:
+
+```bash
+VITE_WEATHER_API_KEY=your_openweathermap_api_key
+```
+
+4. Запустите проект:
+
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
+## Примечания
 
-```sh
-npm run build
-```
+- Убедитесь, что файл .env добавлен в .gitignore, чтобы он не был загружен в удаленный репозиторий.
+- Для работы приложения необходимо получить API ключ от [OpenWeatherMap](https://openweathermap.org/).
